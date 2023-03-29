@@ -125,3 +125,8 @@ class WorkerUpdateView(LoginRequiredMixin, generic.UpdateView):
     def get_success_url(self):
         pk = self.kwargs["pk"]
         return reverse("manager:worker-detail", kwargs={"pk": pk})
+
+
+class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Worker
+    success_url = reverse_lazy("manager:worker-list")
