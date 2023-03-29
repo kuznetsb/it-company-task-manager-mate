@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <table>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Deadline</th>
+        <th>Completed</th>
+        <th>Priority</th>
+      </tr>
+    {% for task in task_list %}
+      <tr>
+        <td>{{ task.name }}</td>
+        <td>{{ task.description|slice:":50" }}
+          {% if task.description|length > 50 %}
+            ...
+          {% endif %}
+        </td>
+        <td>{{ task.deadline }}</td>
+        {% if task.is_completed %}
+          <td>Yes</td>
+        {% else %}
+          <td>No</td>
+        {% endif %}
+        <td>{{ task.get_priority_display }}</td>
+      </tr>
+    {% endfor %}
+
+    </table>
+{% endblock %}
