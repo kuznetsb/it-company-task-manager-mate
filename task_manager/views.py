@@ -4,9 +4,10 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views import generic
 
-from task_manager.models import Task
+from task_manager.models import Task, TaskType, Position
 
 
 @login_required
@@ -29,7 +30,20 @@ def index(request):
     return render(request, "task_manager/index.html", context=context)
 
 
+class TaskTypeCreateView(LoginRequiredMixin, generic.CreateView):
+    model = TaskType
+    template_name = "task_manager/task_type_form.html"
+    context_object_name = "task_type"
+    fields = "__all__"
+    success_url = reverse_lazy("manager:index")
+
+
+class PositionCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Position
+    fields = "__all__"
+    success_url = reverse_lazy("manager:index")
+
+
 class TaskListView(LoginRequiredMixin, generic.ListView):
     model = Task
     paginate_by = 10
-
