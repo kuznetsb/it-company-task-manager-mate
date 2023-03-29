@@ -7,7 +7,8 @@ from task_manager.models import Task
 class TaskForm(forms.ModelForm):
     assignees = forms.ModelMultipleChoiceField(
         queryset=get_user_model().objects.all(),
-        widget=forms.CheckboxSelectMultiple
+        widget=forms.CheckboxSelectMultiple,
+        required=False
     )
     deadline = forms.DateField(
         widget=forms.DateInput(
