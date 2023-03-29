@@ -134,7 +134,7 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
         queryset = Task.objects.select_related(
             "task_type").prefetch_related("assignees")
 
-        form = PositionSearchForm(self.request.GET)
+        form = TaskSearchForm(self.request.GET)
 
         if form.is_valid():
             return queryset.filter(
