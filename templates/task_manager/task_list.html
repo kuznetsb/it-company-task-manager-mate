@@ -8,6 +8,8 @@
         <th>Deadline</th>
         <th>Completed</th>
         <th>Priority</th>
+        <th>Task Type</th>
+        <th>Number of assignees</th>
       </tr>
     {% for task in task_list %}
       <tr>
@@ -24,6 +26,8 @@
           <td>No</td>
         {% endif %}
         <td>{{ task.get_priority_display }}</td>
+        <td>{{ task.task_type.name }}</td>
+        <td>{{ task.assignees.count }}</td>
       </tr>
     {% endfor %}
 
