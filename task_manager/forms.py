@@ -39,3 +39,14 @@ class WorkerCreationForm(UserCreationForm):
             "last_name",
             "position"
         )
+
+
+class WorkerPositionUpdateForm(forms.ModelForm):
+    position = forms.ModelChoiceField(
+        required=False,
+        queryset=Position.objects.all()
+    )
+
+    class Meta:
+        model = Worker
+        fields = ["position"]
