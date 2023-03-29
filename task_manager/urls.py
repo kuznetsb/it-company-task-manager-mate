@@ -14,7 +14,8 @@ from task_manager.views import (
     TaskUpdateView,
     TaskDeleteView,
     WorkerListView,
-    WorkerDetailView
+    WorkerDetailView,
+    WorkerCreateView,
 )
 
 urlpatterns = [
@@ -60,6 +61,7 @@ urlpatterns = [
         WorkerDetailView.as_view(),
         name="worker-detail"
     ),
+    path("workers/create/", WorkerCreateView.as_view(), name="worker-create"),
 ]
 
 app_name = "manager"
