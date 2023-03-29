@@ -8,8 +8,13 @@
   <p>{{ worker.first_name }} {{ worker.last_name }}</p>
   <p>Position: {{ worker.position.name }}</p>
   <div>
-    <p>Tasks:</p>
-    {% for task in worker.tasks.all %}
+    <p>Completed tasks:</p>
+    {% for task in completed %}
+      <p>{{ task }}</p>
+    {% endfor %}
+    <br>
+    <p>Uncompleted tasks:</p>
+    {% for task in uncompleted %}
       <p>{{ task }}</p>
     {% endfor %}
   </div>

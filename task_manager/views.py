@@ -201,6 +201,13 @@ class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
     model = Worker
     queryset = get_user_model().objects.prefetch_related("tasks")
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        worker = self.get_object()
+        context["completed"] = worker.tasks.filter(is_completed=True)
+        context["uncompleted"] = worker.tasks.filter(is_completed=False)
+        return context
+
 
 class WorkerCreateView(LoginRequiredMixin, generic.CreateView):
     model = Worker
