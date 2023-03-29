@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h2>Workers</h2>
+  <h2>Workers <a href="{% url 'manager:worker-create' %}">Create</a></h2>
   <table>
       <tr>
         <th>Username</th>
