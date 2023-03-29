@@ -62,6 +62,9 @@ class Task(models.Model):
         related_name="tasks"
     )
 
+    class Meta:
+        ordering = ["deadline"]
+
     def __str__(self) -> str:
         status = "Completed" if self.is_completed else "Not Completed"
         return f"{self.name} (Deadline: {self.deadline}, Status: {status}"
