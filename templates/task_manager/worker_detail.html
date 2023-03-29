@@ -2,9 +2,8 @@
 
 {% block content %}
   <h2>{{ worker.first_name }} {{ worker.last_name }}</h2>
-  <a href="{% url 'manager:worker-update' pk=worker.id%}">Edit</a>
   <p>Username: {{ worker.username }}</p>
-  <p>Email: {{ worker.email }}</p>
+  <p>Position: {{ worker.position.name }} <a href="{% url 'manager:worker-update' pk=worker.id%}">Edit</a></p>
   <div>
     <p>Tasks:</p>
     {% for task in worker.tasks.all %}
