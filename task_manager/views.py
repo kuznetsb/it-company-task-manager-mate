@@ -103,5 +103,5 @@ class TaskDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = Worker
-    queryset = Worker.objects.select_related("position")
+    queryset = get_user_model().objects.select_related("position")
     paginate_by = 10
