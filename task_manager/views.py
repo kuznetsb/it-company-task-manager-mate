@@ -8,7 +8,7 @@ from django.urls import reverse_lazy, reverse
 from django.views import generic
 
 from task_manager.forms import TaskForm
-from task_manager.models import Task, TaskType, Position
+from task_manager.models import Task, TaskType, Position, Worker
 
 
 @login_required
@@ -99,3 +99,9 @@ class TaskUpdateView(LoginRequiredMixin, generic.UpdateView):
 class TaskDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Task
     success_url = reverse_lazy("manager:task-list")
+
+
+class WorkerListView(LoginRequiredMixin, generic.ListView):
+    model = Worker
+    queryset = Worker.objects.select_related("position")
+    paginate_by = 10
