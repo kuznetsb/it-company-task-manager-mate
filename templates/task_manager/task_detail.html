@@ -4,6 +4,13 @@
   <h2>{{ task.name }}
     <a href="{% url 'manager:task-update' pk=task.id %}">Edit</a>
     <a href="{% url 'manager:task-delete' pk=task.id%}">Delete</a>
+    <a href="{% url 'manager:task-assign-worker' pk=task.id%}">
+      {% if user in task.assignees.all %}
+        Delete me from this task
+      {% else %}
+        Assign me to this task
+      {% endif %}
+    </a>
   </h2>
   <p>Deadline: {{ task.deadline }} Completed: {{ task.is_completed }} Priority {{ task.get_priority_display }}</p>
   <div>
