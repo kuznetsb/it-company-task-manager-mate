@@ -2,6 +2,10 @@
 
 {% block content %}
   <h2>Task types: <a href="{% url 'manager:task-type-create' %}">+</a></h2>
+  <form action="" method="get" class="form-inline">
+    {{ search_form }}
+    <input type="submit" value="Search" class="btn btn-secondary">
+  </form>
   {% for task in task_type_list %}
     <p>{{ task.name }} <a href="{% url 'manager:task-type-delete' pk=task.id %}">Delete</a></p>
   {% endfor %}
