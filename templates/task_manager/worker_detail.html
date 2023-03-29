@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h2>{{ worker.first_name }} {{ worker.last_name }}</h2>
+  <h2>{{ worker.first_name }} {{ worker.last_name }}
+    <a href="{% url 'manager:worker-delete' pk=worker.id%}">Delete</a>
+  </h2>
   <p>Username: {{ worker.username }}</p>
   <p>Position: {{ worker.position.name }} <a href="{% url 'manager:worker-update' pk=worker.id%}">Edit</a></p>
   <div>
