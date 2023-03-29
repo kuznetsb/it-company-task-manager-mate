@@ -17,7 +17,8 @@ from task_manager.views import (
     WorkerDetailView,
     WorkerCreateView,
     WorkerUpdateView,
-    WorkerDeleteView
+    WorkerDeleteView,
+    assign_to_task
 )
 
 urlpatterns = [
@@ -73,7 +74,8 @@ urlpatterns = [
         "workers/<int:pk>/delete",
         WorkerDeleteView.as_view(),
         name="worker-delete"
-    )
+    ),
+    path("tasks/<int:pk>/assign/", assign_to_task, name="task-assign-worker")
 ]
 
 app_name = "manager"

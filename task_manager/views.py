@@ -3,7 +3,7 @@ import datetime
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy, reverse
 from django.views import generic
 
@@ -220,3 +220,13 @@ class WorkerUpdateView(LoginRequiredMixin, generic.UpdateView):
 class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Worker
     success_url = reverse_lazy("manager:worker-list")
+
+
+def assign_to_task(request, pk):
+    worker = get_user_model().objects.get(id=request.user.id)
+    task = Task.objects.get(id=pk)
+    if worker in task.assignees.all():
+        task.assignees.remove(worker)
+    else:
+        task.assignees.add(worker)
+    return redirect(reverse_lazy("manager:task-detail", args=[pk]))
