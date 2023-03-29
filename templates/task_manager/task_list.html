@@ -14,7 +14,7 @@
       </tr>
     {% for task in task_list %}
       <tr>
-        <td>{{ task.name }}</td>
+        <td><a href="{% url 'manager:task-detail' pk=task.id %}">{{ task.name }}</a></td>
         <td>{{ task.description|slice:":50" }}
           {% if task.description|length > 50 %}
             ...
