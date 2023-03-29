@@ -30,12 +30,26 @@ def index(request):
     return render(request, "task_manager/index.html", context=context)
 
 
+class TaskTypeListView(LoginRequiredMixin, generic.ListView):
+    model = TaskType
+    template_name = "task_manager/task_type_list.html"
+    context_object_name = "task_type_list"
+    paginate_by = 10
+
+
 class TaskTypeCreateView(LoginRequiredMixin, generic.CreateView):
     model = TaskType
     template_name = "task_manager/task_type_form.html"
     context_object_name = "task_type"
     fields = "__all__"
-    success_url = reverse_lazy("manager:index")
+    success_url = reverse_lazy("manager:task-type-list")
+
+
+class TaskTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = TaskType
+    template_name = "task_manager/task_type_confirm_delete.html"
+    context_object_name = "task_type"
+    success_url = reverse_lazy("manager:task-type-list")
 
 
 class PositionCreateView(LoginRequiredMixin, generic.CreateView):

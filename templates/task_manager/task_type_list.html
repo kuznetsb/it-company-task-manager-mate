@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Task types: <a href="{% url 'manager:task-type-create' %}">+</a></h2>
+  {% for task in task_type_list %}
+    <p>{{ task.name }} <a href="{% url 'manager:task-type-delete' pk=task.id %}">Delete</a></p>
+  {% endfor %}
+
+{% endblock %}
