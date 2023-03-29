@@ -47,5 +47,11 @@ class PositionCreateView(LoginRequiredMixin, generic.CreateView):
 class TaskListView(LoginRequiredMixin, generic.ListView):
     model = Task
     paginate_by = 10
-    queryset = Task.objects.all().select_related(
+    queryset = Task.objects.select_related(
         "task_type").prefetch_related("assignees")
+
+
+class TaskDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Task
+    queryset = Task.objects.select_related(
+        "task_type").prefetch_related("assignees__position")
