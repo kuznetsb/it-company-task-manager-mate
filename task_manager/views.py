@@ -7,6 +7,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
+from task_manager.forms import TaskForm
 from task_manager.models import Task, TaskType, Position
 
 
@@ -78,3 +79,9 @@ class TaskDetailView(LoginRequiredMixin, generic.DetailView):
     model = Task
     queryset = Task.objects.select_related(
         "task_type").prefetch_related("assignees__position")
+
+
+class TaskCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Task
+    form_class = TaskForm
+    success_url = reverse_lazy("manager:task-list")
