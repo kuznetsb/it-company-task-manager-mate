@@ -86,7 +86,7 @@ class TaskSearchForm(forms.Form):
 
 
 class WorkerSearchForm(forms.Form):
-    name = forms.CharField(
+    first_name = forms.CharField(
         max_length=255,
         required=False,
         label="",
