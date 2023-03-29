@@ -2,6 +2,10 @@
 
 {% block content %}
   <h2>All positions in company <a href="{% url 'manager:position-create' %}">+</a></h2>
+  <form action="" method="get" class="form-inline">
+    {{ search_form }}
+    <input type="submit" value="Search" class="btn btn-secondary">
+  </form>
   {% for position in position_list %}
     <p>{{ position.name }} <a href="{% url 'manager:position-delete' pk=position.id %}">Delete</a></p>
   {% endfor %}
