@@ -57,7 +57,9 @@ class TaskTypeSearchForm(forms.Form):
         max_length=255,
         required=False,
         label="",
-        widget=forms.TextInput(attrs={"placeholder": "Search by task type name..."})
+        widget=forms.TextInput(
+            attrs={"placeholder": "Search by task type name..."}
+        )
     )
 
 
@@ -66,7 +68,9 @@ class PositionSearchForm(forms.Form):
         max_length=255,
         required=False,
         label="",
-        widget=forms.TextInput(attrs={"placeholder": "Search by position name..."})
+        widget=forms.TextInput(
+            attrs={"placeholder": "Search by position name..."}
+        )
     )
 
 
@@ -75,7 +79,9 @@ class TaskSearchForm(forms.Form):
         max_length=255,
         required=False,
         label="",
-        widget=forms.TextInput(attrs={"placeholder": "Search by task name..."})
+        widget=forms.TextInput(
+            attrs={"placeholder": "Search by task name..."}
+        )
     )
 
 
@@ -84,5 +90,7 @@ class WorkerSearchForm(forms.Form):
         max_length=255,
         required=False,
         label="",
-        widget=forms.TextInput(attrs={"placeholder": "Search by worker first name..."})
+        widget=forms.TextInput(
+            attrs={"placeholder": "Search by worker first name..."}
+        )
     )
