@@ -38,4 +38,4 @@ class TaskAdmin(admin.ModelAdmin):
     def get_priority(self, obj):
         return obj.get_priority_display()
 
-    get_priority.short_description = 'Priority'
+    get_priority.short_description = "Priority"
