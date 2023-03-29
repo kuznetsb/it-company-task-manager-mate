@@ -52,10 +52,19 @@ class TaskTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
     success_url = reverse_lazy("manager:task-type-list")
 
 
+class PositionListView(LoginRequiredMixin, generic.ListView):
+    model = Position
+
+
 class PositionCreateView(LoginRequiredMixin, generic.CreateView):
     model = Position
     fields = "__all__"
-    success_url = reverse_lazy("manager:index")
+    success_url = reverse_lazy("manager:position-list")
+
+
+class PositionDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Position
+    success_url = reverse_lazy("manager:position-list")
 
 
 class TaskListView(LoginRequiredMixin, generic.ListView):

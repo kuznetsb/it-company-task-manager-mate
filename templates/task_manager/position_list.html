@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>All positions in company <a href="{% url 'manager:position-create' %}">+</a></h2>
+  {% for position in position_list %}
+    <p>{{ position.name }} <a href="{% url 'manager:position-delete' pk=position.id %}">Delete</a></p>
+  {% endfor %}
+
+{% endblock %}
