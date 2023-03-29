@@ -1,1 +1,11 @@
 {% extends "base.html" %}
+{% block content %}
+  <p>All tasks of company: {{ num_all_tasks }}</p>
+  <p>Successfully completed tasks: {{ num_tasks_done }}</p>
+  <p>Workers in the company: {{ num_workers }}</p>
+  <ul>
+    {% for task in today_tasks %}
+      <li>{{ task.name }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
