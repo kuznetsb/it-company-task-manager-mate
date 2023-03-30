@@ -181,7 +181,7 @@ class WorkerListView(LoginRequiredMixin, generic.ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        first_name = self.request.GET.get("fist_name", "")
+        first_name = self.request.GET.get("first_name", "")
 
         context["search_form"] = WorkerSearchForm(
             initial={"first_name": first_name}
