@@ -29,12 +29,14 @@ def index(request):
     num_workers = get_user_model().objects.count()
     today_tasks = Task.objects.filter(deadline=today).select_related(
         "task_type").prefetch_related("assignees")
+    tasks_done_percentage = int(num_tasks_done / num_all_tasks * 100)
 
     context = {
         "num_all_tasks": num_all_tasks,
         "num_tasks_done": num_tasks_done,
         "num_workers": num_workers,
         "today_tasks": today_tasks,
+        "percentage": tasks_done_percentage
     }
 
     return render(request, "task_manager/index.html", context=context)

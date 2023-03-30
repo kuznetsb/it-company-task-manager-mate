@@ -36,6 +36,11 @@
                     <p class="text-sm mb-0 text-capitalize font-weight-bold">Tasks done:</p>
                     <h5 class="font-weight-bolder mb-0">
                       {{ num_tasks_done }}
+                      {% if percentage > 70 %}
+                        <span class="text-success text-sm font-weight-bolder">{{ percentage }}%</span>
+                      {% else %}
+                        <span class="text-danger text-sm font-weight-bolder">{{ percentage }}%</span>
+                      {% endif %}
                     </h5>
                   </div>
                 </div>
