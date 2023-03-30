@@ -14,6 +14,7 @@ class FormTests(TestCase):
             "position": position,
             "first_name": "Test",
             "last_name": "User",
+            "email": ""
         }
 
         form = WorkerCreationForm(data=form_data)
