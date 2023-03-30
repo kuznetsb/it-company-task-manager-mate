@@ -35,6 +35,11 @@ class Worker(AbstractUser):
         verbose_name = "worker"
         verbose_name_plural = "workers"
 
+    def __str__(self):
+        position = self.position.name if self.position else "No position yet"
+        return (f"{self.first_name} {self.last_name} "
+                f"(Username: {self.username} Position: {position})")
+
 
 class Task(models.Model):
     TASK_IMPORTANCE_CHOICES = {
