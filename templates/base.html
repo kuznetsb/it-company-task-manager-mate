@@ -37,6 +37,9 @@
         {% include "includes/navigation.html" %}
         {% block content %}{% endblock content %}
     </main>
+    {% block pagination %}
+      {% include "includes/pagination.html" %}
+    {% endblock %}
 
 
 <!--   Core JS Files   -->
