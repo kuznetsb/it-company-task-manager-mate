@@ -27,7 +27,8 @@ def index(request):
     num_all_tasks = Task.objects.count()
     num_tasks_done = Task.objects.filter(is_completed=True).count()
     num_workers = get_user_model().objects.count()
-    today_tasks = Task.objects.filter(deadline=today)
+    today_tasks = Task.objects.filter(deadline=today).select_related(
+        "task_type").prefetch_related("assignees")
 
     context = {
         "num_all_tasks": num_all_tasks,
