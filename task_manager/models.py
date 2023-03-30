@@ -67,4 +67,4 @@ class Task(models.Model):
 
     def __str__(self) -> str:
         status = "Completed" if self.is_completed else "Not Completed"
-        return f"{self.name} (Deadline: {self.deadline}, Status: {status}"
+        return f"{self.name} (Deadline: {self.deadline}, Status: {status})"
