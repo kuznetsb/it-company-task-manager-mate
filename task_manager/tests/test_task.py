@@ -143,7 +143,10 @@ class PrivateTaskTests(TestCase):
         self.assertEqual(updated_task.is_completed, True)
         self.assertEqual(updated_task.get_priority_display(), "Low Priority")
         self.assertEqual(updated_task.assignees.all()[0], self.user)
-        self.assertRedirects(response, reverse("manager:task-detail", args=[self.task.id]))
+        self.assertRedirects(
+            response,
+            reverse("manager:task-detail", args=[self.task.id])
+        )
 
     def test_task_delete(self):
         url = reverse("manager:task-delete", args=[self.task.id])
