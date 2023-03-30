@@ -1,40 +1,87 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
-  <h2>Tasks <a href="{% url 'manager:task-create' %}">+</a></h2>
-  <form action="" method="get" class="form-inline">
-    {{ search_form }}
-    <input type="submit" value="Search" class="btn btn-secondary">
-  </form>
-  <table>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Deadline</th>
-        <th>Completed</th>
-        <th>Priority</th>
-        <th>Task Type</th>
-        <th>Number of assignees</th>
-      </tr>
-    {% for task in task_list %}
-      <tr>
-        <td><a href="{% url 'manager:task-detail' pk=task.id %}">{{ task.name }}</a></td>
-        <td>{{ task.description|slice:":50" }}
-          {% if task.description|length > 50 %}
-            ...
-          {% endif %}
-        </td>
-        <td>{{ task.deadline }}</td>
-        {% if task.is_completed %}
-          <td>Yes</td>
-        {% else %}
-          <td>No</td>
-        {% endif %}
-        <td>{{ task.get_priority_display }}</td>
-        <td>{{ task.task_type.name }}</td>
-        <td>{{ task.assignees.count }}</td>
-      </tr>
-    {% endfor %}
 
-    </table>
+    <div class="container-fluid py-4">
+
+      <div class="row">
+        <div class="col-12">
+          <div class="card mb-4">
+            {% if task_list %}
+              <div class="card-header pb-0">
+                <div class="row">
+                  <div class="col-6 d-flex align-items-center">
+                    <h6 class="mb-0">List of all tasks</h6>
+                  </div>
+                  <div class="col-6 text-end">
+                    <a class="btn bg-gradient-dark mb-0" href="{% url 'manager:task-create' %}"><i class="fas fa-plus"></i>&nbsp;&nbsp;New Task</a>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body px-0 pt-0 pb-2">
+                <div class="table-responsive p-0">
+                  <table class="table align-items-center justify-content-center mb-0">
+                    <thead>
+                      <tr>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Task type</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Deadline</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Status</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Priority</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Number of workers</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for task in task_list %}
+                        <tr>
+                          <td>
+                            <div class="d-flex px-2">
+                              <div class="my-auto">
+                                <h6 class="mb-0 text-sm"><a href="{% url 'manager:task-detail' pk=task.id%}">{{ task.name }}</a></h6>
+                              </div>
+                            </div>
+                          </td>
+                          <td>
+                            <p class="text-sm font-weight-bold mb-0">{{ task.task_type.name }}</p>
+                          </td>
+                          <td>
+                            <p class="text-sm font-weight-bold mb-0">{{ task.deadline }}</p>
+                          </td>
+                          <td>
+                            <p class="text-sm font-weight-bold mb-0">
+                              {% if task.is_completed %} Completed ✅ {% else %} Not Completed ❌ {% endif %}
+                            </p>
+                          </td>
+                          <td>
+                            <p class="text-sm font-weight-bold mb-0">{{ task.get_priority_display }}</p>
+                          </td>
+                          <td>
+                            <p class="text-sm font-weight-bold mb-0">{{ task.assignees.count }}</p>
+                          </td>
+                        </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            {% else %}
+              <div class="card-header pb-0">
+                <div class="row">
+                  <div class="col-6 d-flex align-items-center">
+                    <h6 class="mb-0">No tasks in the company yet</h6>
+                  </div>
+                  <div class="col-6 text-end">
+                    <a class="btn bg-gradient-dark mb-0" href="{% url 'manager:task-create' %}"><i class="fas fa-plus"></i>&nbsp;&nbsp;New Task</a>
+                  </div>
+                </div>
+                <div class="card-body px-0 pt-0 pb-2"></div>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+    </div>
 {% endblock %}
