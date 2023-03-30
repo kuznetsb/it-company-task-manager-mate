@@ -1,9 +1,16 @@
 {% extends "base.html" %}
+{% load crispy_forms_filters %}
 {% load static %}
 
 {% block content %}
 
     <div class="container-fluid py-4">
+      <div class="row">
+        <form action="" method="get" class="d-flex flex-row align-items-center flex-wrap">
+          {{ search_form|crispy }}
+          <input type="submit" value="🔍" class="btn bg-gradient-white">
+        </form>
+      </div>
 
       <div class="row">
         <div class="col-12">
