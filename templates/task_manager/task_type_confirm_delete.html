@@ -1,12 +1,25 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
-  <p>Are you sure you want to delete {{ task_type.name }} task type?</p>
-  <p>All tasks associated with this task type will also be deleted</p>
-  <form action="" method="post">
-    {% csrf_token %}
+  <div class="container-fluid py-4">
+    <div class="row">
+      <div class="col-12">
+        <div class="card mb-4">
+          <div class="card-header pb-0">
+            <h6>Are you sure you want to delete {{ task_type.name }} type of task?</h6>
+            <h6>All tasks associated with that type of task will be deleted also! </h6>
+          </div>
+          <div class="card-body px-0 pt-0 pb-2">
+            <form action="" method="post">
+              {% csrf_token %}
 
-    <input type="submit" value="Yes" class="btn btn-danger">
-    <a href="{% url 'manager:task-type-list' %}">Cancel</a>
-  </form>
+              <input type="submit" value="Yes" class="btn bg-gradient-danger">
+              <a class="btn bg-gradient-secondary" href="{% url 'manager:task-type-list' %}">Cancel</a>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}

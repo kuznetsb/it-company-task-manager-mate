@@ -1,13 +1,59 @@
 {% extends "base.html" %}
+{% load crispy_forms_filters %}
+{% load static %}
 
 {% block content %}
-  <h2>Task types: <a href="{% url 'manager:task-type-create' %}">+</a></h2>
-  <form action="" method="get" class="form-inline">
-    {{ search_form }}
-    <input type="submit" value="Search" class="btn btn-secondary">
-  </form>
-  {% for task in task_type_list %}
-    <p>{{ task.name }} <a href="{% url 'manager:task-type-delete' pk=task.id %}">Delete</a></p>
-  {% endfor %}
+  <div class="container-fluid py-4">
+    <div class="row">
+      <form action="" method="get" class="d-flex flex-row align-items-center flex-wrap">
+        {{ search_form|crispy }}
+        <input type="submit" value="🔍" class="btn bg-gradient-white">
+      </form>
+    </div>
+    <div class="row">
+      <div class="col-md-7 mt-4">
+        <div class="card">
+          {% if task_type_list %}
+            <div class="card-header pb-0 px-3">
+              <div class="row">
+                <div class="col-6 d-flex align-items-center">
+                  <h6 class="mb-0">Available task types</h6>
+                </div>
+                <div class="col-6 text-end">
+                  <a class="btn bg-gradient-dark mb-0" href="{% url 'manager:task-type-create' %}"><i class="fas fa-plus"></i>&nbsp;&nbsp;New Task Type</a>
+                </div>
+              </div>
+            </div>
+            <div class="card-body pt-4 p-3">
+              <ul class="list-group">
+                {% for task in task_type_list %}
+                  <li class="list-group-item border-0 d-flex p-2 mb-2 bg-gray-100 border-radius-lg">
+                    <div class="d-flex flex-column">
+                      <h6 class="mb-3 text-sm">{{ task.name }}</h6>
+                    </div>
+                    <div class="ms-auto text-end">
+                      <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="{% url 'manager:task-type-delete' pk=task.id %}"><i class="far fa-trash-alt me-2"></i>Delete</a>
+                    </div>
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% else %}
+            <div class="card-header pb-0 px-3">
+              <div class="row">
+                <div class="col-6 d-flex align-items-center">
+                  <h6 class="mb-0">No task types created yet</h6>
+                </div>
+                <div class="col-6 text-end">
+                  <a class="btn bg-gradient-dark mb-0" href="{% url 'manager:task-type-create' %}"><i class="fas fa-plus"></i>&nbsp;&nbsp;New Task Type</a>
+                </div>
+              </div>
+            </div>
+            <div class="card-body pt-4 p-3"></div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
 
 {% endblock %}
