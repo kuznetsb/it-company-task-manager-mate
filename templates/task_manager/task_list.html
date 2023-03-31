@@ -58,7 +58,11 @@
                           </td>
                           <td>
                             <p class="text-sm font-weight-bold mb-0">
-                              {% if task.is_completed %} Completed ✅ {% else %} Not Completed ❌ {% endif %}
+                              {% if task.is_completed %}
+                                Completed ✅
+                              {% else %}
+                                Not Completed ❌ <a class="btn btn-link text-success text-gradient px-3 mb-0" href="{% url 'manager:mark-done' pk=task.id %}">Done</a>
+                              {% endif %}
                             </p>
                           </td>
                           <td>

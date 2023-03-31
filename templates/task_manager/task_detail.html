@@ -30,7 +30,11 @@
                 <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Type:</strong> &nbsp; {{ task.task_type.name }}</li>
                 <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Deadline:</strong> &nbsp; {{ task.deadline }}</li>
                 <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Status:</strong>
-                  {% if task.is_completed %} Completed ✅ {% else %} Not Completed ❌ {% endif %}
+                  {% if task.is_completed %}
+                    Completed ✅
+                  {% else %}
+                    Not Completed ❌ <a class="btn btn-link text-success text-gradient px-3 mb-0" href="{% url 'manager:mark-done' pk=task.id %}">Done</a>
+                  {% endif %}
                 </li>
                 <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Priority:</strong> &nbsp; {{ task.get_priority_display }}</li>
               </ul>

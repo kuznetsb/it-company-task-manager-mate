@@ -242,3 +242,10 @@ def assign_to_task(request, pk):
     else:
         task.assignees.add(worker)
     return redirect(reverse_lazy("manager:task-detail", args=[pk]))
+
+
+def mark_task_done(request, pk):
+    task = Task.objects.get(id=pk)
+    task.is_completed = True
+    task.save()
+    return redirect(request.META.get('HTTP_REFERER'))
