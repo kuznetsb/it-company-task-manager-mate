@@ -71,7 +71,7 @@
                           </td>
                           <td>
                             <p class="text-sm font-weight-bold mb-0">
-                              {% if task.is_completed %} Completed ✅ {% else %} Not Completed ❌ {% endif %}
+                              Completed ✅
                             </p>
                           </td>
                           <td>
@@ -134,7 +134,10 @@
                           </td>
                           <td>
                             <p class="text-sm font-weight-bold mb-0">
-                              {% if task.is_completed %} Completed ✅ {% else %} Not Completed ❌ {% endif %}
+                              Not Completed ❌
+                              {% if user.id == worker.id %}
+                              <a class="btn btn-link text-success text-gradient px-3 mb-0" href="{% url 'manager:mark-done' pk=task.id %}">Done</a>
+                              {% endif %}
                             </p>
                           </td>
                           <td>
@@ -167,130 +170,3 @@
   </div>
 
 {% endblock %}
-
-    {% if completed %}
-      <div class="row">
-        <div class="col-12">
-          <div class="card mb-4">
-            <div class="card-header pb-0">
-              <h6>Completed tasks of this employee</h6>
-            </div>
-            <div class="card-body px-0 pt-0 pb-2">
-              <div class="table-responsive p-0">
-                <table class="table align-items-center mb-0">
-                  <thead>
-                    <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Type</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Deadline</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Status</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Priority</th>
-                      <th class="text-secondary opacity-7"></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {% for task in completed %}
-                      <tr>
-                        <td>
-                          <div class="d-flex px-2 py-1">
-                            <div class="d-flex flex-column justify-content-center">
-                              <h6 class="mb-0 text-sm">{{ task.name }}</h6>
-                            </div>
-                          </div>
-                        </td>
-                        <td>
-                          <p class="text-xs font-weight-bold mb-0">{{ task.task_type.name }}</p>
-                        </td>
-                        <td>
-                          <p class="text-xs font-weight-bold mb-0">{{ task.deadline }}</p>
-                        </td>
-                        <td>
-                          <p class="text-sm font-weight-bold mb-0">
-                            {% if task.is_completed %} Completed ✅ {% else %} Not Completed ❌ {% endif %}
-                          </p>
-                        </td>
-                        <td>
-                          <p class="text-sm font-weight-bold mb-0">{{ task.get_priority_display }}</p>
-                        </td>
-                        <td class="align-middle">
-                          <a href="{% url 'manager:task-detail' pk=task.id %}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="View task">
-                            detail
-                          </a>
-                        </td>
-                      </tr>
-                    {% endfor %}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    {% else %}
-      <div class="card-header pb-0">
-        <h6>This employee hasn't completed any task</h6>
-      </div>
-    {% endif %}
-    {% if uncompleted %}
-      <div class="row">
-        <div class="col-12">
-          <div class="card mb-4">
-            <div class="card-header pb-0">
-              <h6>Uncompleted tasks of this employee</h6>
-            </div>
-            <div class="card-body px-0 pt-0 pb-2">
-              <div class="table-responsive p-0">
-                <table class="table align-items-center mb-0">
-                  <thead>
-                    <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Type</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Deadline</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Status</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Priority</th>
-                      <th class="text-secondary opacity-7"></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {% for task in uncompleted %}
-                      <tr>
-                        <td>
-                          <div class="d-flex px-2 py-1">
-                            <div class="d-flex flex-column justify-content-center">
-                              <h6 class="mb-0 text-sm">{{ task.name }}</h6>
-                            </div>
-                          </div>
-                        </td>
-                        <td>
-                          <p class="text-xs font-weight-bold mb-0">{{ task.task_type.name }}</p>
-                        </td>
-                        <td>
-                          <p class="text-xs font-weight-bold mb-0">{{ task.deadline }}</p>
-                        </td>
-                        <td>
-                          <p class="text-sm font-weight-bold mb-0">
-                            {% if task.is_completed %} Completed ✅ {% else %} Not Completed ❌ {% endif %}
-                          </p>
-                        </td>
-                        <td>
-                          <p class="text-sm font-weight-bold mb-0">{{ task.get_priority_display }}</p>
-                        </td>
-                        <td class="align-middle">
-                          <a href="{% url 'manager:task-detail' pk=task.id %}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="View task">
-                            detail
-                          </a>
-                        </td>
-                      </tr>
-                    {% endfor %}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    {% else %}
-      <div class="card-header pb-0">
-        <h6>This employee has done all tasks!</h6>
-      </div>
-    {% endif %}
