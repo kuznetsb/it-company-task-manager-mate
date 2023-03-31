@@ -42,6 +42,10 @@ At this point, the app runs at `http://127.0.0.1:8000/`.
 
 <br />
 
+## Use such credentials to login and check functionality
+* username: test_user
+* password: 1qazcde3
+
 ## Features
 * Assign yourself to task
 * Mark tasks as done
