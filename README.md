@@ -2,6 +2,9 @@
 
 **Django** project where implemented back-end logic with `Django Framework` and front-end part using `Bootstrap 5`
 
+# Check it out!
+[Task manager App project deployed to Render](https://task-manager-app-h743.onrender.com)
+
 ## Manual Build
 > 👉 Install modules via `VENV`  
 
@@ -35,6 +38,11 @@ $ python manage.py createsuperuser
 $ python manage.py runserver
 ```
 
-At this point, the app runs at `http://127.0.0.1:8000/`. 
+At this point, the app runs at `http://127.0.0.1:8000/`.
 
 <br />
+
+## Features
+* Assign yourself to task
+* Mark tasks as done
+* Your personal profile page with separated completed and uncompleted tasks
