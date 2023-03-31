@@ -64,7 +64,6 @@
             <span class="nav-link-text ms-1">Task Types</span>
           </a>
         </li>
-        {% if request.user.is_superuser %}
           <li class="nav-item">
             <a class="nav-link {% if 'manager:worker-list' in segment %} active {% endif %} " href="{% url 'manager:worker-list' %}">
               <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -81,7 +80,6 @@
               <span class="nav-link-text ms-1">Positions</span>
             </a>
           </li>
-        {% endif %}
 
     </ul>
 
