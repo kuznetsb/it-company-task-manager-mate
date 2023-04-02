@@ -9,8 +9,9 @@
 > 👉 Install modules via `VENV`  
 
 ```bash
-$ virtualenv env
-$ source env/bin/activate
+$ virtualenv venv
+$ venv\Scripts\activate (on Windows)
+$ source venv/bin/activate (on Mac)
 $ pip install -r requirements.txt
 ```
 
@@ -50,3 +51,6 @@ At this point, the app runs at `http://127.0.0.1:8000/`.
 * Assign yourself to task
 * Mark tasks as done
 * Your personal profile page with separated completed and uncompleted tasks
+
+## DEMO
+![Website interface](demo.png)
