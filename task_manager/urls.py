@@ -72,12 +72,12 @@ urlpatterns = [
         name="worker-update"
     ),
     path(
-        "workers/<int:pk>/delete",
+        "workers/<int:pk>/delete/",
         WorkerDeleteView.as_view(),
         name="worker-delete"
     ),
     path("tasks/<int:pk>/assign/", assign_to_task, name="task-assign-worker"),
-    path("tasks/<int:pk>/mark_done", mark_task_done, name="mark-done")
+    path("tasks/<int:pk>/mark_done/", mark_task_done, name="mark-done")
 ]
 
 app_name = "manager"
